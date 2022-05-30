@@ -51,7 +51,6 @@ void DS_ReadByte(unsigned char *b)
 void DS_Command(unsigned char c)
 {
     DS_WriteByte(c);
-    DS_EmptyByte();
 }
 
 sbit DEBUG_TRIGGER_B = P0 ^ 2;
@@ -72,13 +71,15 @@ void DS_ReadTemperature(Temperature *t)
     Delay(12);
     DS_Command(SkipROM);
     DebugPulse();
+    Delay(12);
     DS_Command(ConvertT);
     DebugPulse();
     DS_Reset();
     DebugPulse();
-    Delay(12);
+    Delay(500);
     DS_Command(SkipROM);
     DebugPulse();
+    Delay(12);
     DS_Command(ReadMem);
     DebugPulse();
     DS_ReadByte(&temp_l);
