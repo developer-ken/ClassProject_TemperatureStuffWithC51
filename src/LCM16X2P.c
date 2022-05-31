@@ -1,12 +1,7 @@
 #include <REG51.H>
 #include <INTRINS.H>
 #include "LCM16X2P.h"
-
-#define LCM_DB P1
-sbit LCM_RS = P0 ^ 4;
-sbit LCM_RW = P0 ^ 5;
-sbit LCM_E = P0 ^ 6;
-sbit LCM_BLE = P0 ^ 7;
+#include "config.h"
 
 unsigned int data DelayConst = 140;
 
