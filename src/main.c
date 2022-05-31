@@ -2,7 +2,7 @@
  * Encoding : GBK
  * 单片机课程设计 基于DS18B20温度传感器的温度传感与控制系统
  * 邓君卓 208200611
- * 
+ *
  * main.c
  * 主程序文件
  */
@@ -12,13 +12,12 @@
 #include "ds18b20.h"
 #include "config.h"
 #include "Mech.h"
+#include "onewire.h"
 
 #include "LCM16X2P.h"
 
 main()
 {
-    unsigned int i;
-    unsigned char tmph, tmp1;
     char strtmp[16];
     Temperature t;
     TMOD = 0X21;
@@ -42,10 +41,11 @@ main()
     LCMDisplayString(0, 0, "-  208200611  -");
     while (1)
     {
-        if(!DS_CurrentTemperature(&t)){
+        if (!DS_CurrentTemperature(&t))
+        {
             printf("Communication Error\n");
             printf("Retrying...\n");
-            sprintf("ERR - msgp.tech");
+            sprintf(strtmp, "ERR - msgp.tech");
         }
         printf("%d.%04d\n", t.z, t.x);
         if (t.z >= 27)
