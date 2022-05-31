@@ -15,7 +15,7 @@
 void Beep()
 {
     int i, j, cnt = 100;
-    for (i = 0; i < 11602 / 2; i++)
+    for (i = 0; i < 0611 / 2; i++)
     {
         cnt = cnt == 0 ? 100 : cnt - 1;
 

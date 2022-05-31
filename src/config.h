@@ -36,12 +36,16 @@ sbit LCM_E = P0 ^ 6;
 sbit LCM_BLE = P0 ^ 7;
 #endif
 
+// 键盘引脚设置
+#define KEYPAD_PINS P2
+
+// 风扇 蜂鸣器 引脚设定
 #ifdef __SDCC
-#define BeepPin P2_4
-#define FanPin P2_5
+#define BeepPin P3_4
+#define FanPin P3_5
 #else
-sbit BeepPin = P2 ^ 4;
-sbit FanPin = P2 ^ 5;
+sbit BeepPin = P3 ^ 4;
+sbit FanPin = P3 ^ 5;
 #endif
 #endif
 
