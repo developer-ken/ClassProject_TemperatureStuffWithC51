@@ -2,7 +2,7 @@
  * Encoding : GBK
  * 单片机课程设计 基于DS18B20温度传感器的温度传感与控制系统
  * 邓君卓 208200611
- * 
+ *
  * ds18b20.c
  * DS18B20温度传感器驱动
  * 通过OneWire与传感器通讯,解码传回的温度数据
@@ -19,11 +19,11 @@ bit DS_CurrentTemperature(Temperature *t)
 {
     unsigned char tmp1, tmph;
     bit success = 1;
-    success &= OneWire_Reset();
+    success = OneWire_Reset();
     Delay(12);
     OneWire_WriteByte(SkipROM);
     OneWire_WriteByte(StartConvert);
-    success &= OneWire_Reset();
+    success = success && OneWire_Reset();
     Delay(12);
     OneWire_WriteByte(SkipROM);
     OneWire_WriteByte(ReadMemory);

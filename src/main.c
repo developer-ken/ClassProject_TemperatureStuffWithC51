@@ -33,7 +33,7 @@ main()
     while (!OneWire_Reset())
     {
         LCMDisplayString(0, 0, "ERROR");
-        LCMDisplayString(1, 0, "Communication Error");
+        LCMDisplayString(1, 0, "Missing Sensor");
         printf("Sensor communication error\n");
         printf("Retrying...\n");
     }
@@ -41,14 +41,15 @@ main()
     LCMDisplayString(0, 0, "-  208200611  -");
     while (1)
     {
-        if (!DS_CurrentTemperature(&t))
+        bit success = DS_CurrentTemperature(&t);
+        if (!success)
         {
-            printf("Communication Error\n");
-            printf("Retrying...\n");
-            sprintf(strtmp, "ERR - msgp.tech");
+            LCMDisplayString(1, 0, "Sensor Failure");
+            FanOn();
+            Beep();
+            continue;
         }
-        printf("%d.%04d\n", t.z, t.x);
-        if (t.z >= 27)
+        else if (t.z >= 27)
         {
             sprintf(strtmp, "T=%d.%04d  X_X", t.z, t.x);
             FanOn();
@@ -64,14 +65,15 @@ main()
             sprintf(strtmp, "T=%d.%04d  OvO", t.z, t.x);
         }
         LCMDisplayString(1, 0, strtmp);
-        if (t.z >= 27)
-        {
-            Beep();
-            LCM_BLE = !LCM_BLE;
-        }
-        else
-        {
-            LCM_BLE = 0;
-        }
+        if (success)
+            if (t.z >= 27)
+            {
+                Beep();
+                LCM_BLE = !LCM_BLE;
+            }
+            else
+            {
+                LCM_BLE = 0;
+            }
     }
 }
