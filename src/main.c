@@ -38,7 +38,7 @@ void KeyUp(char x, char y)
     }
 }
 
-main()
+void main()
 {
     char fan_temp = 26;
     char warn_temp = 27;
