@@ -1,3 +1,12 @@
+/*
+ * Encoding : GBK
+ * 单片机课程设计 基于DS18B20温度传感器的温度传感与控制系统
+ * 邓君卓 208200611
+ * 
+ * onewire.c
+ * OneWire协议栈实现
+ */
+
 #include <reg51.h>
 #include "config.h"
 #include "onewire.h"
