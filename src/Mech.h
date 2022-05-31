@@ -11,8 +11,7 @@
 
 #ifndef _MECH_H__
 #define _MECH_H__
-sbit BeepPin = P2 ^ 4;
-sbit FanPin = P2 ^ 5;
+#include "config.h"
 void Beep()
 {
     int i, j, cnt = 100;

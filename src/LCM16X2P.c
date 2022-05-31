@@ -2,19 +2,19 @@
  * Encoding : GBK
  * 单片机课程设计 基于DS18B20温度传感器的温度传感与控制系统
  * 邓君卓 208200611
- * 
+ *
  * LCM16X2P.c
  * LCM16X2P系列LCD驱动
  * 控制LCD显示指定内容
  */
 
 #include <REG51.H>
-#include <INTRINS.H>
 #include "LCM16X2P.h"
 #include "config.h"
 
-unsigned int data DelayConst = 140;
+unsigned int DelayConst = 140;
 
+#ifndef __SDCC
 void LCMDelay(int ms)
 {
     unsigned int i, cnt;
@@ -22,6 +22,14 @@ void LCMDelay(int ms)
     for (i = 0; i < cnt; i++)
         ;
 }
+#else
+void LCMDelay(int i)
+{
+    i *= DelayConst;
+    while (i--)
+        ;
+}
+#endif
 
 unsigned char LCMReadState(void)
 {

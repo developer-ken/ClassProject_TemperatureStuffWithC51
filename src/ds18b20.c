@@ -9,16 +9,14 @@
  */
 
 #include <reg51.h>
-#include <stdio.h>
-#include <intrins.h>
 #include "onewire.h"
 
 #include "ds18b20.h"
 
-bit DS_CurrentTemperature(Temperature *t)
+char DS_CurrentTemperature(Temperature *t)
 {
     unsigned char tmp1, tmph;
-    bit success = 1;
+    char success = 1;
     success = OneWire_Reset();
     Delay(12);
     OneWire_WriteByte(SkipROM);

@@ -17,6 +17,6 @@ typedef struct{
     unsigned int x;
 } Temperature;
 
-bit DS_CurrentTemperature(Temperature*);
+char DS_CurrentTemperature(Temperature*);
 
 #endif

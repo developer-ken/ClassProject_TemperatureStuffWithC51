@@ -17,9 +17,9 @@ void Delay(unsigned int i)
     while (i--);
 }
 
-bit OneWire_Reset(void)
+char OneWire_Reset(void)
 {
-    bit x;
+    char x;
     ONEWIRE = 1;
     Delay(8);
     ONEWIRE = 0;

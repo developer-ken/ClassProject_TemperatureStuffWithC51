@@ -8,7 +8,6 @@
  */
 
 #include <reg51.h>
-#include <stdio.h>
 #include "ds18b20.h"
 #include "config.h"
 #include "Mech.h"
@@ -41,15 +40,16 @@ main()
     LCMDisplayString(0, 0, "-  208200611  -");
     while (1)
     {
-        bit success = DS_CurrentTemperature(&t);
+        char success = DS_CurrentTemperature(&t);
         if (!success)
         {
             LCMDisplayString(1, 0, "Sensor Failure");
             FanOn();
             Beep();
+            LCM_BLE = !LCM_BLE;
             continue;
         }
-        else if (t.z >= 27)
+        if (t.z >= 27)
         {
             sprintf(strtmp, "T=%d.%04d  X_X", t.z, t.x);
             FanOn();
@@ -65,15 +65,14 @@ main()
             sprintf(strtmp, "T=%d.%04d  OvO", t.z, t.x);
         }
         LCMDisplayString(1, 0, strtmp);
-        if (success)
-            if (t.z >= 27)
-            {
-                Beep();
-                LCM_BLE = !LCM_BLE;
-            }
-            else
-            {
-                LCM_BLE = 0;
-            }
+        if (t.z >= 27)
+        {
+            Beep();
+            LCM_BLE = !LCM_BLE;
+        }
+        else
+        {
+            LCM_BLE = 0;
+        }
     }
 }
