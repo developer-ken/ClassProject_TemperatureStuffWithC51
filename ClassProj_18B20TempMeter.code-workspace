@@ -46,5 +46,9 @@
     "tasks": {
         "version": "2.0.0",
         "tasks": []
+    },
+    "author": {
+        "name": "Dev_ken",
+        "email": "dengbw01@outlook.com"
     }
 }

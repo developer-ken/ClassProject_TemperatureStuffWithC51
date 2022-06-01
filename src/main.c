@@ -24,15 +24,22 @@ char inputbuffer[3];
 char inputpointer = 0;
 char mode = 0;
 
-void KeyUp(char x, char y)
+void OnKey(char x, char y)
 {
-    if (x == 1 && y == 4)
+    if (inputpointer == 0)
+    {
+        inputbuffer[0] = 0;
+        inputbuffer[1] = 0;
+        inputbuffer[2] = 0;
+    }
+    SimpleBeep();
+    if (x == 4 && y == 1)
         mode = 'A';
-    else if (x == 4 && y == 4)
+    else if (x == 4 && y == 3)
         mode = 'B';
     else if (inputpointer < 2)
     {
-        char key = keyarray[y - 1][x - 1];
+        char key = keyarray[x - 1][y - 1];
         inputbuffer[inputpointer] = key;
         inputpointer++;
     }
@@ -135,6 +142,6 @@ void main()
         {
             LCM_BLE = 0;
         }
-        keyloop(KeyUp);
+        keyloop(OnKey);
     }
 }

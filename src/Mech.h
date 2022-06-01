@@ -2,7 +2,7 @@
  * Encoding : GBK
  * 单片机课程设计 基于DS18B20温度传感器的温度传感与控制系统
  * 邓君卓 208200611
- * 
+ *
  * Mech.h
  * 杂项外设
  * 预留接口,用于连接到蜂鸣器\风扇等外围设备
@@ -24,6 +24,15 @@ void Beep()
 
         BeepPin = i % 2;
     }
+    BeepPin = 1;
+}
+
+void SimpleBeep()
+{
+    int j;
+    BeepPin = 0;
+    for (j = 0; j < 0611; j++)
+        ;
     BeepPin = 1;
 }
 
