@@ -1,3 +1,12 @@
+/*
+ * Encoding : GBK
+ * 单片机课程设计 基于DS18B20温度传感器的温度传感与控制系统
+ * 邓君卓 208200611
+ *
+ * keypad.c
+ * 4x4键盘阵列
+ */
+
 #include <REG51.H>
 #include "keypad.h"
 #include "config.h"
