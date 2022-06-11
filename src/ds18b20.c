@@ -15,7 +15,7 @@
 
 char DS_CurrentTemperature(Temperature *t)
 {
-    unsigned char tmp1, tmph;
+    unsigned char tmpl, tmph;
     char success = 1;
     success = OneWire_Reset();
     Delay(12);
@@ -25,9 +25,9 @@ char DS_CurrentTemperature(Temperature *t)
     Delay(12);
     OneWire_WriteByte(SkipROM);
     OneWire_WriteByte(ReadMemory);
-    tmp1 = OneWire_ReadByte();
+    tmpl = OneWire_ReadByte();
     tmph = OneWire_ReadByte();
-    t->z = (int)((tmph & 0x07) << 4 | (tmp1 & 0Xf0) >> 4);
-    t->x = (int)((tmp1 & 0x0f) * 625);
+    t->z = (int)((tmph & 0x07) << 4 | (tmpl & 0Xf0) >> 4);
+    t->x = (int)((tmpl & 0x0f) * 625);
     return success;
 }
